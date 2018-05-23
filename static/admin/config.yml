@@ -18,6 +18,8 @@ collections:
       - {label: "Description", name: "description", widget: "text"}
       - {label: "Body", name: "body", widget: "markdown"}
       - {label: "Tags", name: "tags", widget: "list"}
+      - {label: "Meta Title", name: "metaTitle", widget: "string", default: "RightSwipe", pattern: [".{,26}", "Cannot be longer than 26 characters"]}
+      - {label: "Meta Description", name: "metaDescription", widget: "string", default: "Swipe Right on life!", pattern: [".{,160}", "Cannot be longer than 160 characters"]}
 
   - name: "pages"
     label: "Pages"
@@ -29,6 +31,7 @@ collections:
           - {label: "Template Key", name: "templateKey", widget: "hidden", default: "about-page"}
           - {label: "Title", name: "title", widget: "string"}
           - {label: "Body", name: "body", widget: "markdown"}
+          - {label: "Meta Title", name: "metaTitle", widget: "string", default: "RightSwipe", pattern: [".{,26}", "Cannot be longer than 26 characters"]}
       - file: "src/pages/products/index.md"
         label: "Products Page"
         name: "products"
