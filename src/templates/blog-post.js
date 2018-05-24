@@ -12,12 +12,18 @@ export const BlogPostTemplate = ({
   tags,
   title,
   helmet,
+  metaTitle,
+  metaDescription
 }) => {
   const PostContent = contentComponent || Content
 
   return (
     <section className="section">
       {helmet || ''}
+      <Helmet>
+        <title>{metaTitle}</title>
+        <meta name="description" content={metaDescription} />
+      </Helmet>
       <div className="container content">
         <div className="columns">
           <div className="column is-10 is-offset-1">
@@ -86,6 +92,8 @@ export const pageQuery = graphql`
         title
         description
         tags
+        metaTitle
+        metaDescription
       }
     }
   }
