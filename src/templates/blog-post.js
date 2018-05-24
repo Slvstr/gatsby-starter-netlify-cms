@@ -61,9 +61,8 @@ const PostHelmet = (post) => (
 );
 
 PostHelmet.propTypes = {
-  frontmatter: PropTypes.shape({
-    metaTitle: PropTypes.string,
-    metaDescription: PropTypes.string
+  post: PropTypes.shape({
+    frontmatter: PropTypes.object
   })
 };
 
