@@ -11,19 +11,13 @@ export const BlogPostTemplate = ({
   description,
   tags,
   title,
-  helmet,
-  metaTitle,
-  metaDescription
+  helmet
 }) => {
   const PostContent = contentComponent || Content
 
   return (
     <section className="section">
       {helmet || ''}
-      <Helmet>
-        <title>{metaTitle}</title>
-        <meta name="description" content={metaDescription} />
-      </Helmet>
       <div className="container content">
         <div className="columns">
           <div className="column is-10 is-offset-1">
@@ -56,8 +50,22 @@ BlogPostTemplate.propTypes = {
   contentComponent: PropTypes.func,
   description: PropTypes.string,
   title: PropTypes.string,
-  helmet: PropTypes.instanceOf(Helmet),
+  helmet: PropTypes.instanceOf(PostHelmet),
 }
+
+const PostHelmet = (post) => (
+  <Helmet>
+    <title>{post.frontmatter.metaTitle}</title>
+    <meta name="description" content={post.frontmatter.metaDescription} />
+  </Helmet>
+);
+
+PostHelmet.propTypes = {
+  frontmatter: PropTypes.shape({
+    metaTitle: PropTypes.string,
+    metaDescription: PropTypes.string
+  })
+};
 
 const BlogPost = ({ data }) => {
   const { markdownRemark: post } = data
@@ -67,7 +75,7 @@ const BlogPost = ({ data }) => {
       content={post.html}
       contentComponent={HTMLContent}
       description={post.frontmatter.description}
-      helmet={<Helmet title={`${post.frontmatter.title} | Blog`} />}
+      helmet={<PostHelmet post={post} />}
       tags={post.frontmatter.tags}
       title={post.frontmatter.title}
     />
