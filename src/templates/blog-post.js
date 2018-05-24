@@ -53,7 +53,7 @@ BlogPostTemplate.propTypes = {
   helmet: PropTypes.instanceOf(PostHelmet),
 }
 
-const PostHelmet = (post) => (
+const PostHelmet = ({ post }) => (
   <Helmet>
     <title>{post.frontmatter.metaTitle}</title>
     <meta name="description" content={post.frontmatter.metaDescription} />
